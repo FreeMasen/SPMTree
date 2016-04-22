@@ -1,0 +1,3 @@
+let midBranch = "├──"
+let endBranch = "└──"
+let pipe = "│"
