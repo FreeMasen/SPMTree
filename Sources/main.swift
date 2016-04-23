@@ -3,7 +3,7 @@ import File
 
 func main() {
 
-	let charSet = CharacterSet(characters: ["\t",",",")"])
+	let charSet = CharacterSet(characters: ["\t",",",")","\""])
 	
 	do {
 		let wkdir = try File.workingDirectory()
@@ -16,16 +16,16 @@ func main() {
 			let relevantlines = lines.filter { $0.contains(".Package") }
 			let splitLinesArray = relevantlines.map { $0.trim(charSet).split(" ") }
 			for line in splitLinesArray {
-				let fullPath = "\(line[1])/blob/master/Package.swift"
-				print("trying: \(line[1])")
-				GitHelper.getRemotePackage(at: "\(line[1])/blob/master/Package.swift")
+					
 				let splitAddr = line[1].split("/")
-				let org = splitAddr[2]
-				let pkg = splitAddr[3]
+				let org = splitAddr[2].trim(charSet)
+				var pkg = splitAddr[3].trim(charSet)
+				let repo = pkg.replace(".git", with: "")
 				let mjr = line[3]
 				let mnr = line[5]
-				var itter = 0
-				print("org: \(org)\npkg: \(pkg)\n\version: (mjr).(mnr)")
+				print("org: \(org)")
+				print("pkg: \(pkg)")
+				GitHelper.remoteDependant(for: org, repo: pkg)
 			}
 		}
 			
