@@ -1,9 +1,10 @@
 import HTTPClient
 
 struct Tree {
-	var Dependants: [Dependant]
+	var Dependents: [Dependent]
 	
-	func description() -> [String:[Dependant]] {
-		return ["tree": Dependants]
+	func description() -> [String:[Dependent]] {
+		return ["tree": Dependents]
+		
 	}
 }

@@ -1,4 +1,3 @@
-
 import File
 
 func main() {
@@ -20,12 +19,14 @@ func main() {
 				let splitAddr = line[1].split("/")
 				let org = splitAddr[2].trim(charSet)
 				var pkg = splitAddr[3].trim(charSet)
-				let repo = pkg.replace(".git", with: "")
+				print(pkg)
+				pkg.replace(".git", with: "")
+				print(pkg)
 				let mjr = line[3]
 				let mnr = line[5]
-				print("org: \(org)")
-				print("pkg: \(pkg)")
-				GitHelper.remoteDependant(for: org, repo: pkg)
+				let dependent = Dependent(name: pkg, dependents: [String](), url: line[1], version: "\(mjr).\(mnr)")
+				print(dependent.description)
+				//				GitHelper.remoteDependant(for: org, repo: pkg)
 			}
 		}
 			
