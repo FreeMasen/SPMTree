@@ -1,12 +1,17 @@
-os:
-- linux
-- osx
-language: generic
-sudo: required
-dist: trusty
-osx_image: xcode7.2
-install:
-- eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
-script:
-- swift build
-
+notifications: 
+2   slack: zewo:VjyVCCQvTOw9yrbzQysZezD1 
+3 os: 
+4   - linux 
+5   - osx 
+6 language: generic 
+7 sudo: required 
+8 dist: trusty 
+9 osx_image: xcode7.3 
+10 install: 
+11   - eval "$(curl -sL https://raw.githubusercontent.com/Zewo/Zewo/5254525d9da56df29346fd76e99529c22034d61d/Scripts/install-swiftenv.sh)" 
+12 script: 
+13   - swift build --fetch # clones all dependencies 
+14   - rm -rf Packages/*/Tests # deletes dependency's tests until duplicate Package.tests issue can be resolved in SPM. At that point, remove. 
+15   - swift build -Xlinker -rpath -Xlinker $(pwd)/.build/debug/ 
+16   - swift build --configuration release -Xlinker -rpath -Xlinker $(pwd)/.build/release/ 
+17   - swift test 
