@@ -8,5 +8,5 @@ install:
  - eval "$(curl -sL https://raw.githubusercontent.com/Zewo/Zewo/5254525d9da56df29346fd76e99529c22034d61d/Scripts/install-swiftenv.sh)" 
 script: 
  - swiftenv install https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a/swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a-ubuntu14.04.tar.gz
- - swiftenv use DEVELOPMENT-SNAPSHOT-2016-02-08-a
+ - swiftenv local DEVELOPMENT-SNAPSHOT-2016-02-08-a
  - swift build
