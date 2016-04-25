@@ -5,7 +5,7 @@ sudo: required
 dist: trusty 
 osx_image: xcode7.3 
 before_install:
- - echo "deb [trusted=yes] http://apt.zewo.io/deb ./" >> /etc/apt/sources.list
+ - echo "deb [trusted=yes] http://apt.zewo.io/deb ./" | tee --append /etc/apt/sources.list
  - apt-get update
  - apt-get install zewo
 install: 
